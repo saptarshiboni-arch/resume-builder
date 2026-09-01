@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * MinimalResume — ATS-optimized print template
+ * Monochromatic, hairline rules, generous whitespace.
+ * Font sizes: body 14px (≈10.5pt), contact 13px (≈9.5pt-10pt).
+ * Line heights: 1.4-1.45 throughout for optimal legibility.
+ */
 export default function MinimalResume({ data }) {
   if (!data) return null;
 
@@ -8,97 +14,188 @@ export default function MinimalResume({ data }) {
     career = {},
     summary = '',
     skills = [],
+    skillCategories = null,
     education = [],
     projects = [],
     experience = [],
     certifications = [],
     achievements = [],
-    additional = {}
+    additional = {},
   } = data;
+
+  const hasAdditional =
+    additional &&
+    Object.keys(additional).some(
+      (k) => Array.isArray(additional[k]) && additional[k].length > 0
+    );
 
   const contactItems = [
     personal.email,
     personal.phone,
     personal.location,
-    personal.linkedin,
-    personal.github,
-    personal.portfolio
+    personal.linkedin ? `LinkedIn` : null,
+    personal.github ? personal.github.replace(/https?:\/\/(www\.)?github\.com\//, 'github.com/') : null,
+    personal.portfolio ? 'Portfolio' : null,
   ].filter(Boolean);
 
   return (
-    <div className="resume-a4-sheet p-10 text-neutral-900 font-sans leading-relaxed text-[13px] bg-white shadow-resume">
-      {/* Header */}
-      <header className="text-center pb-4 mb-5 border-b border-neutral-900">
-        <h1 className="text-3xl font-serif tracking-tight font-normal text-neutral-950 uppercase">
+    <div
+      className="resume-a4-sheet bg-white"
+      style={{
+        fontFamily: "'Georgia', 'Times New Roman', serif",
+        fontSize: '14px',
+        lineHeight: 1.4,
+        color: '#111827',
+        padding: '30px 36px 28px',
+      }}
+    >
+      {/* ── Header ─────────────────────────────────────────────── */}
+      <header
+        style={{
+          textAlign: 'center',
+          paddingBottom: '14px',
+          marginBottom: '16px',
+          borderBottom: '2px solid #111827',
+        }}
+      >
+        <h1
+          style={{
+            margin: 0,
+            fontSize: '26px',
+            fontWeight: '400',
+            letterSpacing: '2.5px',
+            textTransform: 'uppercase',
+            color: '#030712',
+            fontFamily: "'Georgia', serif",
+            lineHeight: 1.1,
+          }}
+        >
           {personal.name || 'Your Full Name'}
         </h1>
+
         {career.targetRole && (
-          <p className="text-xs uppercase tracking-widest text-neutral-600 mt-1 font-medium">
-            {career.targetRole} {career.careerLevel ? `• ${career.careerLevel}` : ''}
+          <p
+            style={{
+              margin: '5px 0 0',
+              fontSize: '12.5px',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: '#4b5563',
+              fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+              fontWeight: '500',
+              lineHeight: 1.3,
+            }}
+          >
+            {career.targetRole}{career.careerLevel ? ` · ${career.careerLevel}` : ''}
           </p>
         )}
 
-        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1 mt-2.5 text-xs text-neutral-700">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '0',
+            marginTop: '8px',
+            fontSize: '13px',
+            lineHeight: 1.35,
+            color: '#374151',
+            fontFamily: "'Inter', Arial, sans-serif",
+          }}
+        >
           {contactItems.map((item, idx) => (
             <React.Fragment key={idx}>
               <span>{item}</span>
-              {idx < contactItems.length - 1 && <span className="text-neutral-400">|</span>}
+              {idx < contactItems.length - 1 && (
+                <span style={{ margin: '0 8px', color: '#9ca3af' }}>|</span>
+              )}
             </React.Fragment>
           ))}
         </div>
       </header>
 
-      {/* Summary */}
+      {/* ── Summary ─────────────────────────────────────────────── */}
       {summary && (
-        <section className="mb-5">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-950 border-b border-neutral-300 pb-1 mb-2">
-            Summary
-          </h2>
-          <p className="text-neutral-800 text-xs leading-relaxed text-justify">
+        <section style={{ marginBottom: '14px' }}>
+          <MinSection label="Summary" />
+          <p style={{ margin: 0, color: '#1f2937', fontSize: '14px', lineHeight: 1.45, textAlign: 'justify' }}>
             {summary}
           </p>
         </section>
       )}
 
-      {/* Skills */}
-      {skills && skills.length > 0 && (
-        <section className="mb-5">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-950 border-b border-neutral-300 pb-1 mb-2">
-            Core Competencies & Technologies
-          </h2>
-          <p className="text-xs text-neutral-800 leading-normal">
-            {skills.map((skill, idx) => {
-              const name = typeof skill === 'string' ? skill : skill.name;
-              const level = typeof skill === 'object' && skill.level ? ` (${skill.level})` : '';
-              return `${name}${level}${idx < skills.length - 1 ? ' • ' : ''}`;
-            })}
-          </p>
+      {/* ── Skills — grouped categories (ATS-optimized) or flat fallback ── */}
+      {(skillCategories?.length > 0 || skills?.length > 0) && (
+        <section style={{ marginBottom: '14px' }}>
+          <MinSection label="Core Competencies & Technologies" />
+          {skillCategories && skillCategories.length > 0 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', color: '#1f2937', fontSize: '13px', lineHeight: 1.4, fontFamily: "'Inter', Arial, sans-serif" }}>
+              {skillCategories.map((cat, idx) => (
+                <div key={idx} style={{ display: 'flex', gap: '6px' }}>
+                  <span style={{ fontWeight: '700', color: '#030712', flexShrink: 0, minWidth: '145px' }}>
+                    {cat.category}:
+                  </span>
+                  <span style={{ color: '#374151' }}>
+                    {(cat.items || []).join(', ')}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p style={{ margin: 0, color: '#1f2937', fontSize: '13px', lineHeight: 1.4 }}>
+              {skills.map((skill, idx) => {
+                const name = typeof skill === 'string' ? skill : skill.name;
+                return (
+                  <React.Fragment key={idx}>
+                    <span style={{ fontWeight: '600' }}>{name}</span>
+                    {idx < skills.length - 1 ? ' · ' : ''}
+                  </React.Fragment>
+                );
+              })}
+            </p>
+          )}
         </section>
       )}
 
-      {/* Experience */}
+      {/* ── Experience ─────────────────────────────────────────── */}
       {experience && experience.length > 0 && (
-        <section className="mb-5">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-950 border-b border-neutral-300 pb-1 mb-2">
-            Professional Experience
-          </h2>
-          <div className="space-y-3.5">
+        <section style={{ marginBottom: '14px' }}>
+          <MinSection label="Professional Experience" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
             {experience.map((exp, idx) => (
-              <div key={idx}>
-                <div className="flex justify-between items-baseline flex-wrap">
-                  <div className="font-bold text-neutral-950 text-xs">
-                    {exp.company || 'Company'} — <span className="italic font-normal">{exp.jobTitle || 'Role'}</span>
+              <div key={idx} style={{ pageBreakInside: 'avoid' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '4px' }}>
+                  <div>
+                    <span style={{ fontWeight: '700', color: '#030712', fontSize: '14px' }}>
+                      {exp.company || 'Company'}
+                    </span>
+                    <span style={{ color: '#374151', fontSize: '13.5px' }}>
+                      {' — '}
+                      <em>{exp.jobTitle || 'Role'}</em>
+                    </span>
+                    {exp.employmentType && (
+                      <span style={{ color: '#9ca3af', fontSize: '12px', marginLeft: '5px' }}>
+                        ({exp.employmentType})
+                      </span>
+                    )}
                   </div>
-                  <div className="text-[11px] text-neutral-600 uppercase tracking-wider">
-                    {exp.startDate || ''} {exp.startDate && (exp.endDate || exp.currentlyWorking) ? '–' : ''} {exp.currentlyWorking ? 'Present' : exp.endDate || ''}
-                  </div>
+                  <span style={{ fontSize: '12.5px', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: 'sans-serif' }}>
+                    {exp.startDate || ''}{exp.startDate && (exp.endDate || exp.currentlyWorking) ? ' – ' : ''}
+                    {exp.currentlyWorking ? 'Present' : exp.endDate || ''}
+                  </span>
                 </div>
-                {exp.location && <div className="text-[11px] text-neutral-500 italic mb-1">{exp.location}</div>}
+                {exp.location && (
+                  <div style={{ fontSize: '12px', color: '#9ca3af', fontStyle: 'italic', marginBottom: '3px' }}>
+                    {exp.location}
+                  </div>
+                )}
 
                 {exp.bullets && exp.bullets.length > 0 && (
-                  <ul className="list-disc list-outside ml-4 space-y-1 text-xs text-neutral-800">
+                  <ul style={{ margin: '4px 0 0 18px', padding: 0, display: 'flex', flexDirection: 'column', gap: '3px' }}>
                     {exp.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx}>{bullet}</li>
+                      <li key={bIdx} style={{ color: '#1f2937', fontSize: '14px', lineHeight: 1.4 }}>
+                        {bullet}
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -108,34 +205,33 @@ export default function MinimalResume({ data }) {
         </section>
       )}
 
-      {/* Projects */}
+      {/* ── Projects ─────────────────────────────────────────────── */}
       {projects && projects.length > 0 && (
-        <section className="mb-5">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-950 border-b border-neutral-300 pb-1 mb-2">
-            Projects
-          </h2>
-          <div className="space-y-3">
+        <section style={{ marginBottom: '14px' }}>
+          <MinSection label="Projects" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {projects.map((proj, idx) => (
-              <div key={idx}>
-                <div className="flex justify-between items-baseline flex-wrap">
-                  <div className="font-bold text-neutral-950 text-xs">
-                    {proj.name || 'Project'}
-                    {proj.type && <span className="font-normal text-neutral-600"> ({proj.type})</span>}
+              <div key={idx} style={{ pageBreakInside: 'avoid' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '4px' }}>
+                  <div>
+                    <span style={{ fontWeight: '700', color: '#030712', fontSize: '14px' }}>{proj.name || 'Project'}</span>
+                    {proj.type && <span style={{ color: '#9ca3af', fontWeight: '400', marginLeft: '5px', fontSize: '12px' }}>({proj.type})</span>}
                   </div>
-                  <div className="text-[11px] text-neutral-600">
-                    {[proj.url, proj.github].filter(Boolean).join(' | ')}
-                  </div>
+                  <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: 'sans-serif' }}>
+                    {[proj.url ? 'Live' : null, proj.github ? 'GitHub' : null].filter(Boolean).join(' | ')}
+                  </span>
                 </div>
 
                 {proj.description && (
-                  <p className="text-xs text-neutral-800 mt-0.5">
+                  <p style={{ margin: '3px 0 0', color: '#1f2937', fontSize: '14px', lineHeight: 1.45 }}>
                     {proj.description}
                   </p>
                 )}
 
                 {proj.technologies && proj.technologies.length > 0 && (
-                  <p className="text-[11px] text-neutral-600 mt-0.5">
-                    <span className="font-medium">Tools used:</span> {(Array.isArray(proj.technologies) ? proj.technologies : [proj.technologies]).join(', ')}
+                  <p style={{ margin: '3px 0 0', fontSize: '12.5px', color: '#6b7280', fontFamily: 'sans-serif' }}>
+                    <strong style={{ color: '#374151' }}>Tools: </strong>
+                    {(Array.isArray(proj.technologies) ? proj.technologies : [proj.technologies]).join(', ')}
                   </p>
                 )}
               </div>
@@ -144,24 +240,25 @@ export default function MinimalResume({ data }) {
         </section>
       )}
 
-      {/* Education */}
+      {/* ── Education ─────────────────────────────────────────── */}
       {education && education.length > 0 && (
-        <section className="mb-5">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-950 border-b border-neutral-300 pb-1 mb-2">
-            Education
-          </h2>
-          <div className="space-y-2">
+        <section style={{ marginBottom: '14px' }}>
+          <MinSection label="Education" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {education.map((edu, idx) => (
-              <div key={idx} className="flex justify-between items-baseline flex-wrap text-xs">
+              <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4px' }}>
                 <div>
-                  <span className="font-bold text-neutral-950">{edu.institution || edu.school || 'University'}</span>
-                  <div className="italic text-neutral-800">
-                    {edu.degree || edu.qualification || 'Degree'}{edu.field ? `, ${edu.field}` : ''}
+                  <span style={{ fontWeight: '700', color: '#030712', fontSize: '14px' }}>
+                    {edu.institution || edu.school || 'University'}
+                  </span>
+                  <div style={{ fontStyle: 'italic', color: '#374151', fontSize: '13px', lineHeight: 1.4 }}>
+                    {edu.degree || edu.qualification || 'Degree'}
+                    {edu.field ? `, ${edu.field}` : ''}
                   </div>
                 </div>
-                <div className="text-right text-[11px] text-neutral-600">
+                <div style={{ textAlign: 'right', fontSize: '13px', color: '#6b7280', fontFamily: 'sans-serif', lineHeight: 1.35 }}>
                   <div>{edu.startYear ? `${edu.startYear} – ` : ''}{edu.endYear || edu.year || ''}</div>
-                  {edu.score && <div className="font-medium">{edu.score}</div>}
+                  {edu.score && <div style={{ fontWeight: '600', color: '#374151' }}>{edu.score}</div>}
                 </div>
               </div>
             ))}
@@ -169,22 +266,21 @@ export default function MinimalResume({ data }) {
         </section>
       )}
 
-      {/* Certifications & Achievements */}
+      {/* ── Certifications & Achievements ─────────────────────── */}
       {((certifications && certifications.length > 0) || (achievements && achievements.length > 0)) && (
-        <section className="mb-4">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-950 border-b border-neutral-300 pb-1 mb-2">
-            Certifications & Honors
-          </h2>
-          <ul className="list-disc list-outside ml-4 space-y-1 text-xs text-neutral-800">
+        <section style={{ marginBottom: '14px' }}>
+          <MinSection label="Certifications & Honors" />
+          <ul style={{ margin: '0 0 0 18px', padding: 0, display: 'flex', flexDirection: 'column', gap: '3px' }}>
             {certifications.map((cert, idx) => (
-              <li key={`cert-${idx}`}>
-                <span className="font-semibold">{cert.name}</span>
-                {cert.organization && ` — ${cert.organization}`} {cert.date ? `(${cert.date})` : ''}
+              <li key={`c-${idx}`} style={{ color: '#1f2937', fontSize: '13.5px', lineHeight: 1.4 }}>
+                <strong>{cert.name}</strong>
+                {cert.organization && ` — ${cert.organization}`}
+                {cert.date ? ` (${cert.date})` : ''}
               </li>
             ))}
             {achievements.map((ach, idx) => (
-              <li key={`ach-${idx}`}>
-                <span className="font-semibold">{ach.title || ach}</span>
+              <li key={`a-${idx}`} style={{ color: '#1f2937', fontSize: '13.5px', lineHeight: 1.4 }}>
+                <strong>{ach.title || ach}</strong>
                 {ach.description ? `: ${ach.description}` : ''}
               </li>
             ))}
@@ -192,22 +288,43 @@ export default function MinimalResume({ data }) {
         </section>
       )}
 
-      {/* Additional */}
-      {additional && Object.keys(additional).some(k => Array.isArray(additional[k]) && additional[k].length > 0) && (
-        <section className="pt-2 border-t border-neutral-300 text-xs text-neutral-800">
-          <div className="space-y-1">
+      {/* ── Additional ─────────────────────────────────────────── */}
+      {hasAdditional && (
+        <section style={{ paddingTop: '10px', borderTop: '1px solid #d1d5db', fontSize: '13px', lineHeight: 1.4, color: '#4b5563', fontFamily: 'sans-serif' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {additional.languages && additional.languages.length > 0 && (
-              <div><span className="font-bold">Languages:</span> {additional.languages.join(', ')}</div>
+              <div><strong style={{ color: '#111827' }}>Languages: </strong>{additional.languages.join(', ')}</div>
             )}
             {additional.leadership && additional.leadership.length > 0 && (
-              <div><span className="font-bold">Leadership & Activities:</span> {additional.leadership.join('; ')}</div>
+              <div><strong style={{ color: '#111827' }}>Leadership & Activities: </strong>{additional.leadership.join('; ')}</div>
             )}
             {additional.interests && additional.interests.length > 0 && (
-              <div><span className="font-bold">Interests:</span> {additional.interests.join(', ')}</div>
+              <div><strong style={{ color: '#111827' }}>Interests: </strong>{additional.interests.join(', ')}</div>
             )}
           </div>
         </section>
       )}
+    </div>
+  );
+}
+
+function MinSection({ label }) {
+  return (
+    <div style={{ marginBottom: '6px' }}>
+      <h2
+        style={{
+          margin: '0 0 4px 0',
+          fontSize: '10.5px',
+          fontWeight: '700',
+          textTransform: 'uppercase',
+          letterSpacing: '1.5px',
+          color: '#030712',
+          fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+        }}
+      >
+        {label}
+      </h2>
+      <div style={{ height: '1px', background: '#d1d5db' }} />
     </div>
   );
 }

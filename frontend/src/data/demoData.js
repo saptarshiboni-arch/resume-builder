@@ -1,104 +1,113 @@
 export const DEMO_RESUME_DATA = {
   personal: {
-    name: "Alex Johnson",
-    email: "alex.johnson@example.com",
-    phone: "+1 (555) 234-5678",
-    location: "Seattle, WA",
-    linkedin: "https://linkedin.com/in/alexjohnson-dev",
-    github: "https://github.com/alexjohnson",
-    portfolio: "https://alexjohnson.dev"
+    name: "Saptarshi Chowdhury",
+    email: "saptarshiboni@gmail.com",
+    phone: "",
+    location: "City, State",
+    linkedin: "https://linkedin.com/in/saptarshi-chowdhury",
+    github: "https://github.com/saptarshiboni",
+    portfolio: ""
   },
   career: {
     goal: "Full-time Job",
-    targetRole: "Full Stack Developer",
+    targetRole: "Software Engineer",
     careerLevel: "Entry Level"
   },
   education: [
     {
       id: "edu-1",
       qualification: "Bachelor's Degree",
-      degree: "B.S. in Computer Science",
+      degree: "B.Tech in Computer Science",
       field: "Computer Science & Engineering",
-      institution: "University of Washington",
+      institution: "Your University Name",
       startYear: "2021",
       endYear: "2025",
-      score: "3.85 / 4.0 CGPA"
+      score: "CGPA / Percentage"
     }
   ],
+  // Flat skills list kept for wizard compatibility
   skills: [
-    { name: "React", category: "Frontend", level: "Advanced" },
-    { name: "JavaScript", category: "Programming Languages", level: "Advanced" },
-    { name: "TypeScript", category: "Programming Languages", level: "Intermediate" },
-    { name: "Python", category: "Programming Languages", level: "Intermediate" },
-    { name: "Flask", category: "Backend", level: "Intermediate" },
-    { name: "Node.js", category: "Backend", level: "Intermediate" },
-    { name: "PostgreSQL", category: "Database", level: "Intermediate" },
-    { name: "Tailwind CSS", category: "Frontend", level: "Advanced" },
-    { name: "Docker", category: "Tools & DevOps", level: "Beginner" },
-    { name: "Git", category: "Tools & DevOps", level: "Advanced" }
+    { name: "Kotlin" },
+    { name: "C++" },
+    { name: "Swift" },
+    { name: "TypeScript" },
+    { name: "Python" },
+    { name: "JavaScript" },
+    { name: "Spring Boot" },
+    { name: "Vue" },
+    { name: "Node.js" },
+    { name: "Django" },
+    { name: "ASP.NET" },
+    { name: "Ruby on Rails" },
+    { name: "PostgreSQL" },
+    { name: "MongoDB" },
+    { name: "Redis" },
+    { name: "DynamoDB" },
+    { name: "AWS" },
+    { name: "Docker" },
+    { name: "Kubernetes" },
+    { name: "Git" },
+    { name: "GitHub" },
+    { name: "Linux" },
+    { name: "Jira" },
+    { name: "Postman" },
+    { name: "Scikit-Learn" },
+    { name: "Machine Learning" },
+    { name: "Deep Learning" },
+    { name: "LLMs" },
+    { name: "Computer Vision" }
+  ],
+  // Grouped categories for the resume templates (ATS-optimized plain-text layout)
+  skillCategories: [
+    {
+      category: "Languages",
+      items: ["Kotlin", "C++", "Swift", "TypeScript", "Python", "JavaScript"]
+    },
+    {
+      category: "Frameworks & Web",
+      items: ["Spring Boot", "Vue", "Node.js", "Django", "ASP.NET", "Ruby on Rails"]
+    },
+    {
+      category: "Databases & Cloud",
+      items: ["PostgreSQL", "MongoDB", "Redis", "DynamoDB", "AWS", "Docker", "Kubernetes"]
+    },
+    {
+      category: "Developer Tools",
+      items: ["Git", "GitHub", "Linux", "Jira", "Postman"]
+    },
+    {
+      category: "AI & Machine Learning",
+      items: ["Scikit-Learn", "Machine Learning", "Deep Learning", "LLMs", "Computer Vision"]
+    }
   ],
   projects: [
     {
       id: "proj-1",
       name: "AI Resume Builder",
       type: "Web Application",
-      technologies: ["React", "Flask", "Tailwind CSS", "OpenAI API"],
-      description: "I built a website where job seekers answer guided questions and AI generates formatted ATS resumes with live previews and PDF export.",
-      url: "https://ai-resume-builder-demo.com",
-      github: "https://github.com/alexjohnson/ai-resume-builder"
+      technologies: ["React", "Flask", "Tailwind CSS", "OpenAI API", "MongoDB"],
+      description: "Engineered a full-stack AI-powered resume platform where users answer guided questions and the system generates ATS-optimized, PDF-downloadable resumes with live preview and section-level AI enhancement.",
+      url: "",
+      github: "https://github.com/saptarshiboni/ai-resume-builder"
     },
     {
       id: "proj-2",
       name: "Cloud TaskFlow",
       type: "Web Application",
-      technologies: ["React", "Node.js", "PostgreSQL", "Docker"],
-      description: "A collaborative Kanban board tool with real-time updates via WebSockets and automated team performance metrics.",
-      url: "https://taskflow-app.io",
-      github: "https://github.com/alexjohnson/taskflow"
+      technologies: ["Vue", "Node.js", "PostgreSQL", "Docker", "WebSockets"],
+      description: "Built a real-time collaborative Kanban board with WebSocket-driven live updates, automated team performance analytics, and Docker-containerized deployment pipeline.",
+      url: "",
+      github: "https://github.com/saptarshiboni/taskflow"
     }
   ],
-  experience: [
-    {
-      id: "exp-1",
-      company: "InnovateTech Labs",
-      jobTitle: "Software Engineering Intern",
-      employmentType: "Internship",
-      location: "Seattle, WA",
-      startDate: "Jun 2024",
-      endDate: "Sep 2024",
-      currentlyWorking: false,
-      responsibilities: "Worked with React and Node.js on customer dashboard. Fixed critical bugs and improved load speeds. Wrote unit tests and collaborated in daily Agile standups.",
-      achievements: "Improved dashboard render speed by 28% and received recognition for highest pull request throughput among interns."
-    }
-  ],
-  certifications: [
-    {
-      id: "cert-1",
-      name: "AWS Certified Cloud Practitioner",
-      organization: "Amazon Web Services",
-      date: "2024",
-      url: "https://aws.amazon.com/verification"
-    }
-  ],
-  achievements: [
-    {
-      id: "ach-1",
-      category: "Hackathon",
-      title: "1st Place Winner — Pacific Northwest Hackathon 2024",
-      description: "Built an AI-driven accessibility tool for visually impaired students in 36 hours competing against 45 teams."
-    },
-    {
-      id: "ach-2",
-      category: "Leadership",
-      title: "President — University ACM Student Chapter",
-      description: "Organized weekly tech talks, coding bootcamps, and career mentoring sessions for over 180 student members."
-    }
-  ],
+  experience: [],
+  certifications: [],
+  achievements: [],
   additional: {
-    languages: ["English (Native)", "Spanish (Conversational)"],
-    volunteering: ["Mentored 15+ underrepresented high school students in introductory Python programming."],
-    leadership: ["President of ACM Student Chapter (2023-2024)"],
+    languages: [],
+    volunteering: [],
+    leadership: [],
     publications: [],
-    interests: ["Open-Source Software", "Cloud Architecture", "Competitive Programming"]
+    interests: []
   }
 };

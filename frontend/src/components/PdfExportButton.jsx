@@ -24,19 +24,23 @@ export default function PdfExportButton({ resumeRef, fileName = "Resume" }) {
       const cleanFileName = `${fileName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_resume.pdf`;
 
       const opt = {
-        margin: [5, 5, 5, 5],
+        margin: [8, 8, 8, 8],
         filename: cleanFileName,
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'png' },
         html2canvas: {
-          scale: 2,
+          scale: 4,
           useCORS: true,
+          allowTaint: true,
           letterRendering: true,
-          logging: false
+          logging: false,
+          windowWidth: 794,       // A4 width at 96 dpi — forces correct layout during capture
+          backgroundColor: '#ffffff'
         },
         jsPDF: {
           unit: 'mm',
           format: 'a4',
-          orientation: 'portrait'
+          orientation: 'portrait',
+          compress: true
         }
       };
 

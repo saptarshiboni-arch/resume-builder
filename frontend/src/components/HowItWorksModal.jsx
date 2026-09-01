@@ -43,21 +43,21 @@ export default function HowItWorksModal({ isOpen, onClose, onStart }) {
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-3xl overflow-hidden"
+          className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-3xl overflow-hidden text-slate-900 dark:text-slate-100"
         >
-          <div className="px-6 sm:px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+          <div className="px-6 sm:px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-950/50">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-500/20">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-slate-900 text-lg font-display">How ResumeAI Works</h3>
-                <p className="text-xs text-slate-500">From raw experience to an interview-ready resume in under 3 minutes</p>
+                <h3 className="font-extrabold text-slate-900 dark:text-white text-lg font-display">How ResumeAI Works</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">From raw experience to an interview-ready resume in under 3 minutes</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+              className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -67,27 +67,27 @@ export default function HowItWorksModal({ isOpen, onClose, onStart }) {
             {steps.map((s, idx) => {
               const Icon = s.icon;
               return (
-                <div key={idx} className="p-4 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md hover:border-indigo-100 transition-all group">
+                <div key={idx} className="p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-800 hover:shadow-md hover:border-indigo-100 dark:hover:border-indigo-800 transition-all group">
                   <div className="flex items-center justify-between mb-3">
                     <div className={`w-9 h-9 rounded-xl bg-gradient-to-tr ${s.color} text-white flex items-center justify-center shadow-sm`}>
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-xs font-black text-slate-300 group-hover:text-indigo-600 transition-colors">
+                    <span className="text-xs font-black text-slate-300 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                       STEP {s.step}
                     </span>
                   </div>
-                  <h4 className="font-bold text-slate-900 text-sm mb-1">{s.title}</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1">{s.title}</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{s.desc}</p>
                 </div>
               );
             })}
           </div>
 
-          <div className="px-6 sm:px-8 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+          <div className="px-6 sm:px-8 py-4 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
             <button
               type="button"
               onClick={onClose}
-              className="text-xs font-semibold text-slate-600 hover:text-slate-900 px-4 py-2 rounded-lg hover:bg-slate-200/50 transition-colors"
+              className="text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-4 py-2 rounded-lg hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors"
             >
               Close
             </button>

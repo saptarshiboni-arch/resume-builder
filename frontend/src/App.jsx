@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import AuthModal from './components/AuthModal';
 import LandingPage from './pages/LandingPage';
 import WizardPage from './pages/WizardPage';
 import PreviewPage from './pages/PreviewPage';
 import { DEMO_RESUME_DATA } from './data/demoData';
 import { generateResumeApi } from './services/api';
-import { AlertCircle, X, Sparkles } from 'lucide-react';
+import { useAuth } from './context/AuthContext';
+import { X, Sparkles } from 'lucide-react';
 
 const INITIAL_FORM_DATA = {
   personal: {
@@ -50,22 +52,79 @@ const INITIAL_FORM_DATA = {
 };
 
 export default function App() {
+  const { user, isAuthenticated, openAuthModal } = useAuth();
   const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'wizard' | 'preview'
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [resumeData, setResumeData] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [notification, setNotification] = useState(null);
 
-  // Start fresh resume
+  // Route protection: If unauthenticated, redirect from wizard/preview to landing
+  useEffect(() => {
+    if (!isAuthenticated && currentView !== 'landing') {
+      setCurrentView('landing');
+    }
+  }, [isAuthenticated, currentView]);
+
+  // Auto pre-fill user info if logged in and form is empty
+  useEffect(() => {
+    if (user && !formData.personal.name && !formData.personal.email) {
+      setFormData((prev) => ({
+        ...prev,
+        personal: {
+          ...prev.personal,
+          name: user.name || prev.personal.name,
+          email: user.email || prev.personal.email,
+        },
+        career: {
+          ...prev.career,
+          targetRole: user.targetRole || prev.career.targetRole,
+          careerLevel: user.careerLevel || prev.career.careerLevel,
+        }
+      }));
+    }
+  }, [user]);
+
+  // Start fresh resume - requires authentication
   const handleStartNew = () => {
-    setFormData(INITIAL_FORM_DATA);
+    if (!isAuthenticated) {
+      setNotification({
+        type: 'info',
+        message: 'Please sign in or create an account to start creating your resume.'
+      });
+      openAuthModal('register');
+      return;
+    }
+
+    setFormData({
+      ...INITIAL_FORM_DATA,
+      personal: {
+        ...INITIAL_FORM_DATA.personal,
+        name: user?.name || "",
+        email: user?.email || ""
+      },
+      career: {
+        ...INITIAL_FORM_DATA.career,
+        targetRole: user?.targetRole || "Software Developer",
+        careerLevel: user?.careerLevel || "Entry Level"
+      }
+    });
     setResumeData(null);
     setCurrentView('wizard');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Load realistic demo data
+  // Load realistic demo data - requires authentication
   const handleLoadDemo = () => {
+    if (!isAuthenticated) {
+      setNotification({
+        type: 'info',
+        message: 'Please sign in or create an account to test with demo data.'
+      });
+      openAuthModal('login');
+      return;
+    }
+
     setFormData(DEMO_RESUME_DATA);
     setCurrentView('wizard');
     setNotification({
@@ -77,6 +136,15 @@ export default function App() {
 
   // Trigger AI generation
   const handleGenerateResume = async () => {
+    if (!isAuthenticated) {
+      setNotification({
+        type: 'error',
+        message: 'Please sign in to generate and save your resume.'
+      });
+      openAuthModal('login');
+      return;
+    }
+
     try {
       setIsGenerating(true);
       const enhanced = await generateResumeApi(formData);
@@ -95,7 +163,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
       {/* Navigation Header */}
       <Navbar
         currentView={currentView}
@@ -106,18 +174,18 @@ export default function App() {
 
       {/* Global Notification Banner */}
       {notification && (
-        <div className={`no-print py-2.5 px-4 text-xs font-medium border-b flex items-center justify-between ${
+        <div className={`no-print py-2.5 px-4 text-xs font-medium border-b flex items-center justify-between transition-colors ${
           notification.type === 'error'
-            ? 'bg-red-50 text-red-800 border-red-200'
-            : 'bg-indigo-50 text-indigo-900 border-indigo-200'
+            ? 'bg-red-50 dark:bg-red-950/80 text-red-800 dark:text-red-200 border-red-200 dark:border-red-900'
+            : 'bg-indigo-50 dark:bg-indigo-950/80 text-indigo-900 dark:text-indigo-200 border-indigo-200 dark:border-indigo-900'
         }`}>
           <div className="max-w-7xl mx-auto flex items-center gap-2 flex-1">
-            <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
+            <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
             <span>{notification.message}</span>
           </div>
           <button
             onClick={() => setNotification(null)}
-            className="text-slate-400 hover:text-slate-700 ml-2"
+            className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-2"
           >
             <X className="w-4 h-4" />
           </button>
@@ -150,6 +218,9 @@ export default function App() {
           />
         )}
       </div>
+
+      {/* MERN Authentication Modal */}
+      <AuthModal />
 
       {/* Footer */}
       <Footer />

@@ -81,6 +81,35 @@ def calculate_score():
             "details": str(e)
         }), 500
 
+@resume_bp.route("/chat", methods=["POST"])
+def chat_review():
+    """
+    Provides real-time interactive AI chat advice and review for resume queries.
+    Expected payload: { message: str, history: list, resumeData: dict }
+    """
+    try:
+        data = request.get_json() or {}
+        message = data.get("message", "")
+        history = data.get("history", [])
+        resume_data = data.get("resumeData", {})
+
+        if not message.strip():
+            return jsonify({"success": False, "error": "Message is required."}), 400
+
+        reply = ai_service.chat_with_resume(message, history, resume_data)
+        return jsonify({
+            "success": True,
+            "reply": reply,
+            "aiConfigured": ai_service.is_ai_configured()
+        }), 200
+    except Exception as e:
+        logger.error(f"Error in chat review: {e}", exc_info=True)
+        return jsonify({
+            "success": False,
+            "error": "Failed to process chat query.",
+            "details": str(e)
+        }), 500
+
 @resume_bp.route("/health", methods=["GET"])
 def health_check():
     """Health status and configuration inspection."""

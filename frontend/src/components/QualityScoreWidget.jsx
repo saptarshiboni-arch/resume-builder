@@ -12,9 +12,9 @@ export default function QualityScoreWidget({ scoreData }) {
   } = scoreData;
 
   const getScoreColor = (score) => {
-    if (score >= 85) return 'text-emerald-600 bg-emerald-50 border-emerald-200';
-    if (score >= 70) return 'text-indigo-600 bg-indigo-50 border-indigo-200';
-    return 'text-amber-600 bg-amber-50 border-amber-200';
+    if (score >= 85) return 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800';
+    if (score >= 70) return 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 border-indigo-200 dark:border-indigo-800';
+    return 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800';
   };
 
   const getProgressColor = (score) => {
@@ -24,7 +24,7 @@ export default function QualityScoreWidget({ scoreData }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4">
+    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-4 text-slate-900 dark:text-slate-100 transition-colors duration-200">
       {/* Top Header & Gauge */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -32,10 +32,10 @@ export default function QualityScoreWidget({ scoreData }) {
             <Award className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-bold text-slate-900 text-sm font-display">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm font-display">
               Resume Quality Score
             </h3>
-            <p className="text-[11px] text-slate-500">Evaluated on clarity, impact & ATS structure</p>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">Evaluated on clarity, impact & ATS structure</p>
           </div>
         </div>
 
@@ -53,11 +53,11 @@ export default function QualityScoreWidget({ scoreData }) {
           const pct = Math.round((score / maxCat) * 100);
           return (
             <div key={cat} className="space-y-1">
-              <div className="flex justify-between text-xs font-medium text-slate-700 capitalize">
+              <div className="flex justify-between text-xs font-medium text-slate-700 dark:text-slate-300 capitalize">
                 <span>{cat}</span>
-                <span className="font-semibold text-slate-900">{score}/{maxCat}</span>
+                <span className="font-semibold text-slate-900 dark:text-white">{score}/{maxCat}</span>
               </div>
-              <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+              <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${getProgressColor(score)}`}
                   style={{ width: `${pct}%` }}
@@ -70,15 +70,15 @@ export default function QualityScoreWidget({ scoreData }) {
 
       {/* AI Recommendations */}
       {recommendations && recommendations.length > 0 && (
-        <div className="pt-2 border-t border-slate-100">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 mb-2">
+        <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 mb-2">
             <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
             <span>Improvement Suggestions:</span>
           </div>
-          <ul className="space-y-1.5 text-xs text-slate-600">
+          <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
             {recommendations.map((rec, idx) => (
               <li key={idx} className="flex items-start gap-1.5">
-                <span className="text-indigo-600 font-bold leading-tight mt-0.5">•</span>
+                <span className="text-indigo-600 dark:text-indigo-400 font-bold leading-tight mt-0.5">•</span>
                 <span>{rec}</span>
               </li>
             ))}
