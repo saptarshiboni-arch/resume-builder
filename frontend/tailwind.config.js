@@ -9,21 +9,21 @@ export default {
     extend: {
       colors: {
         brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
+          50: '#faf8f5',
+          100: '#f4efe8',
+          200: '#e7ddce',
+          300: '#d5c4aa',
+          400: '#be9d76',
+          500: '#9d7c54',
+          600: '#7e5f3c',
+          700: '#62472d',
+          800: '#4c3724',
+          900: '#38281a',
+          950: '#1e140d',
         },
         slate: {
-          850: '#151f32',
-          950: '#0b0f19'
+          850: '#141518',
+          950: '#0c0d0e'
         }
       },
       fontFamily: {
@@ -32,8 +32,8 @@ export default {
         display: ['Outfit', 'Inter', 'sans-serif']
       },
       boxShadow: {
-        'glow': '0 0 25px -5px rgba(99, 102, 241, 0.35)',
-        'glow-lg': '0 0 35px -5px rgba(99, 102, 241, 0.45)',
+        'glow': '0 4px 20px -2px rgba(0, 0, 0, 0.08)',
+        'glow-lg': '0 10px 30px -4px rgba(0, 0, 0, 0.12)',
         'resume': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05)'
       }
     },

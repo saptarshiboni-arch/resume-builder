@@ -20,26 +20,26 @@ export default function ProgressBar({ currentStep, totalSteps = 8, onJumpToStep 
   const progressPercent = isReview ? 100 : Math.round((currentStep / totalSteps) * 100);
 
   return (
-    <div className="w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-3.5 px-4 sm:px-8 transition-colors duration-200">
+    <div className="w-full bg-white dark:bg-neutral-900 border-b border-neutral-200/80 dark:border-neutral-800 py-3.5 px-4 sm:px-8 transition-colors duration-200">
       <div className="max-w-4xl mx-auto">
         {/* Top text */}
         <div className="flex items-center justify-between mb-2 text-xs sm:text-sm">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-indigo-600 dark:text-indigo-400">
+            <span className="font-bold text-neutral-900 dark:text-neutral-100">
               {isReview ? 'Final Review' : `Step ${currentStep} of ${totalSteps}`}
             </span>
-            <span className="text-slate-300 dark:text-slate-700">•</span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 truncate">
+            <span className="text-neutral-300 dark:text-neutral-700">•</span>
+            <span className="font-medium text-neutral-600 dark:text-neutral-400 truncate">
               {STEP_TITLES[currentStep - 1] || 'Resume Details'}
             </span>
           </div>
-          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{progressPercent}% Completed</span>
+          <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">{progressPercent}% Completed</span>
         </div>
 
         {/* Progress Track */}
-        <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div className="w-full h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-indigo-500 to-violet-600 rounded-full"
+            className="h-full bg-neutral-900 dark:bg-white rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.4, ease: "easeOut" }}
@@ -66,17 +66,17 @@ export default function ProgressBar({ currentStep, totalSteps = 8, onJumpToStep 
                 <div
                   className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
                     isCompleted
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-950'
                       : isCurrent
-                      ? 'bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border-2 border-indigo-600 scale-110 shadow-sm'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700'
+                      ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white border-2 border-neutral-900 dark:border-white scale-110 shadow-sm'
+                      : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 dark:text-neutral-500 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700'
                   }`}
                 >
                   {isCompleted ? <Check className="w-3.5 h-3.5" /> : stepNum}
                 </div>
                 <span
                   className={`text-[10px] mt-1 tracking-tight font-medium max-w-[65px] text-center truncate ${
-                    isCurrent ? 'text-indigo-600 dark:text-indigo-400 font-bold' : 'text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200'
+                    isCurrent ? 'text-neutral-900 dark:text-white font-bold' : 'text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-800 dark:group-hover:text-neutral-200'
                   }`}
                 >
                   {title.split(' ')[0]}

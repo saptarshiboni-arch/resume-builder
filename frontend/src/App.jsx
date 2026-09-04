@@ -163,7 +163,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-[#fbfaf8] dark:bg-[#0c0d0e] text-neutral-900 dark:text-neutral-100 font-sans transition-colors duration-200 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-950">
       {/* Navigation Header */}
       <Navbar
         currentView={currentView}
@@ -176,16 +176,16 @@ export default function App() {
       {notification && (
         <div className={`no-print py-2.5 px-4 text-xs font-medium border-b flex items-center justify-between transition-colors ${
           notification.type === 'error'
-            ? 'bg-red-50 dark:bg-red-950/80 text-red-800 dark:text-red-200 border-red-200 dark:border-red-900'
-            : 'bg-indigo-50 dark:bg-indigo-950/80 text-indigo-900 dark:text-indigo-200 border-indigo-200 dark:border-indigo-900'
+            ? 'bg-rose-50 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 border-rose-200 dark:border-rose-900/60'
+            : 'bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 border-neutral-800'
         }`}>
           <div className="max-w-7xl mx-auto flex items-center gap-2 flex-1">
-            <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+            <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
             <span>{notification.message}</span>
           </div>
           <button
             onClick={() => setNotification(null)}
-            className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-2"
+            className="text-neutral-400 hover:text-white ml-2 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>

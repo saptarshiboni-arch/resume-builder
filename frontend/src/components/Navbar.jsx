@@ -8,22 +8,22 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
   const { isAuthenticated, openAuthModal } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full border-b border-neutral-200/80 dark:border-neutral-800/80 bg-[#fbfaf8]/90 dark:bg-[#0c0d0e]/90 backdrop-blur-md transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo */}
         <button
           onClick={() => setCurrentView('landing')}
           className="flex items-center gap-2.5 group text-left focus:outline-none"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center shadow-sm group-hover:scale-105 transition-all">
+            <Sparkles className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-lg text-slate-900 dark:text-white tracking-tight font-display">ResumeAI</span>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/80">MVP</span>
+              <span className="font-extrabold text-base sm:text-lg text-neutral-900 dark:text-white tracking-tight font-display">Resume<span className="text-neutral-500 dark:text-neutral-400">Craft</span></span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">PRO</span>
             </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 -mt-0.5 font-medium">Smart AI Resume Builder</p>
+            <p className="text-[11px] text-neutral-500 dark:text-neutral-400 -mt-0.5 font-medium">Smart Resume Studio</p>
           </div>
         </button>
 
@@ -33,10 +33,10 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
           <button
             id="btn-nav-demo"
             onClick={onLoadDemo}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 border border-indigo-200/80 dark:border-indigo-800/80 rounded-lg transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-200 bg-neutral-100/80 dark:bg-neutral-850 hover:bg-neutral-200/80 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700/80 rounded-lg transition-colors"
             title="Load sample Alex Johnson data to test immediately"
           >
-            <PlayCircle className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+            <PlayCircle className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" />
             <span>Try Demo</span>
           </button>
 
@@ -45,15 +45,15 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
             <button
               id="btn-nav-create"
               onClick={onStartNew}
-              className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-98 rounded-lg shadow-sm shadow-indigo-500/30 transition-all"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 active:scale-98 rounded-lg shadow-sm transition-all"
             >
               <PlusCircle className="w-4 h-4" />
-              <span>Create My Resume</span>
+              <span>Create Resume</span>
             </button>
           ) : currentView === 'wizard' ? (
             <button
               onClick={() => setCurrentView('landing')}
-              className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white px-3 py-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
             >
               Exit to Home
             </button>
@@ -61,13 +61,13 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrentView('wizard')}
-                className="text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-3 py-1.5 rounded-lg transition-colors"
+                className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 px-3 py-1.5 rounded-lg transition-colors border border-neutral-200 dark:border-neutral-700"
               >
                 Edit Answers
               </button>
               <button
                 onClick={onStartNew}
-                className="hidden md:inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 px-3 py-1.5 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/50 transition-colors"
+                className="hidden md:inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white px-3 py-1.5 rounded-lg border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
               >
                 <PlusCircle className="w-3.5 h-3.5" />
                 <span>New Resume</span>
@@ -83,7 +83,7 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
               id="btn-nav-auth"
               type="button"
               onClick={() => openAuthModal('login')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 bg-slate-100 dark:bg-slate-850 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/80 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white bg-neutral-100 dark:bg-neutral-850 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700/80 rounded-lg transition-colors"
             >
               <LogIn className="w-3.5 h-3.5" />
               <span>Sign In</span>
@@ -91,7 +91,7 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
           )}
 
           {/* Theme Toggle (Night & Day Mode) */}
-          <div className="pl-1 sm:pl-1.5 border-l border-slate-200 dark:border-slate-800">
+          <div className="pl-1 sm:pl-1.5 border-l border-neutral-200 dark:border-neutral-800">
             <ThemeToggle />
           </div>
         </div>
