@@ -274,18 +274,18 @@ export default function ResumeChatbot({ resumeData }) {
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 text-white shadow-2xl hover:shadow-indigo-500/40 border border-indigo-400/30 transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+          className="flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-2xl hover:bg-neutral-800 dark:hover:bg-neutral-200 border border-neutral-700 dark:border-neutral-300 transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
           aria-label="Toggle AI Resume Review Chatbot"
         >
           {isOpen ? (
             <>
-              <X className="w-5 h-5 text-white" />
+              <X className="w-5 h-5 text-white dark:text-neutral-950" />
               <span className="text-xs font-bold tracking-wide">Close Chat</span>
             </>
           ) : (
             <>
               <div className="relative">
-                <Sparkles className="w-5 h-5 text-amber-300 animate-pulse" />
+                <Sparkles className="w-5 h-5 text-amber-300 dark:text-amber-500 animate-pulse" />
                 <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
@@ -305,13 +305,13 @@ export default function ResumeChatbot({ resumeData }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 25, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-4 sm:right-6 w-[92vw] sm:w-[420px] max-h-[620px] h-[75vh] flex flex-col bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden"
+            className="fixed bottom-24 right-4 sm:right-6 w-[92vw] sm:w-[420px] max-h-[620px] h-[75vh] flex flex-col bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden"
             style={{ zIndex: 99998 }}
           >
             {/* ── Header ─────────────────────────────────────────── */}
-            <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white p-4 flex items-center justify-between border-b border-indigo-900/50 select-none">
+            <div className="bg-neutral-900 dark:bg-neutral-950 text-white p-4 flex items-center justify-between border-b border-neutral-800 select-none">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-indigo-600/30 border border-indigo-400/30 flex items-center justify-center text-amber-300 shadow-inner">
+                <div className="w-9 h-9 rounded-xl bg-neutral-800 dark:bg-neutral-850 border border-neutral-700 flex items-center justify-center text-amber-400 shadow-inner">
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
@@ -322,7 +322,7 @@ export default function ResumeChatbot({ resumeData }) {
                       Live
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-300 truncate max-w-[210px]">
+                  <p className="text-[11px] text-neutral-400 truncate max-w-[210px]">
                     Role: {resumeData?.career?.targetRole || 'Software Professional'}
                   </p>
                 </div>
@@ -332,7 +332,7 @@ export default function ResumeChatbot({ resumeData }) {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors cursor-pointer"
                   aria-label="Close Chat"
                 >
                   <X className="w-5 h-5" />
@@ -341,7 +341,7 @@ export default function ResumeChatbot({ resumeData }) {
             </div>
 
             {/* ── Messages Stream ─────────────────────────────────── */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50/70 dark:bg-slate-950/70">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#fbfaf8] dark:bg-[#0c0d0e]">
               {messages.map((msg, idx) => {
                 const isUser = msg.sender === 'user';
                 return (
@@ -350,7 +350,7 @@ export default function ResumeChatbot({ resumeData }) {
                     className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
                   >
                     {!isUser && (
-                      <div className="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 border border-indigo-200 dark:border-indigo-800">
+                      <div className="w-7 h-7 rounded-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center shrink-0 mt-0.5 border border-neutral-300 dark:border-neutral-700">
                         <Bot className="w-4 h-4" />
                       </div>
                     )}
@@ -358,8 +358,8 @@ export default function ResumeChatbot({ resumeData }) {
                     <div
                       className={`max-w-[85%] rounded-2xl p-3 shadow-xs relative group ${
                         isUser
-                          ? 'bg-indigo-600 text-white rounded-br-none'
-                          : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-none'
+                          ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 rounded-br-none'
+                          : 'bg-white dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-750 text-neutral-900 dark:text-neutral-100 rounded-bl-none'
                       }`}
                     >
                       {isUser ? (
@@ -368,12 +368,12 @@ export default function ResumeChatbot({ resumeData }) {
                         <div className="space-y-1">
                           {renderFormattedText(msg.text, msg.isTyping)}
                           {!msg.isTyping && (
-                            <div className="flex items-center justify-between pt-1 mt-2 border-t border-slate-100 dark:border-slate-800/60 text-[10px] text-slate-400">
+                            <div className="flex items-center justify-between pt-1 mt-2 border-t border-neutral-100 dark:border-neutral-800/60 text-[10px] text-neutral-400">
                               <span>{msg.timestamp}</span>
                               <button
                                 type="button"
                                 onClick={() => handleCopy(msg.text, idx)}
-                                className="inline-flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors p-1 cursor-pointer"
+                                className="inline-flex items-center gap-1 hover:text-neutral-900 dark:hover:text-white transition-colors p-1 cursor-pointer"
                                 title="Copy response"
                               >
                                 {copiedIdx === idx ? (
@@ -389,7 +389,7 @@ export default function ResumeChatbot({ resumeData }) {
                     </div>
 
                     {isUser && (
-                      <div className="w-7 h-7 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-7 h-7 rounded-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center shrink-0 mt-0.5">
                         <User className="w-4 h-4" />
                       </div>
                     )}
@@ -400,13 +400,13 @@ export default function ResumeChatbot({ resumeData }) {
               {/* Typing indicator (while waiting for server response) */}
               {loading && (
                 <div className="flex gap-2.5 items-center">
-                  <div className="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-200 dark:border-indigo-800">
+                  <div className="w-7 h-7 rounded-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 flex items-center justify-center shrink-0 border border-neutral-300 dark:border-neutral-700">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-2xl rounded-bl-none flex items-center gap-1.5 shadow-xs">
-                    <span className="w-2 h-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="bg-white dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-750 px-4 py-2.5 rounded-2xl rounded-bl-none flex items-center gap-1.5 shadow-xs">
+                    <span className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-white animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-white animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-white animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               )}
@@ -414,14 +414,14 @@ export default function ResumeChatbot({ resumeData }) {
             </div>
 
             {/* ── Quick Prompts Suggestion Bar ──────────────────────── */}
-            <div className="px-3 py-2 bg-slate-100/90 dark:bg-slate-900/90 border-t border-slate-200/80 dark:border-slate-800 overflow-x-auto whitespace-nowrap flex gap-1.5">
+            <div className="px-3 py-2 bg-neutral-100/90 dark:bg-neutral-900/90 border-t border-neutral-200 dark:border-neutral-800 overflow-x-auto whitespace-nowrap flex gap-1.5">
               {QUICK_PROMPTS.map((prompt, pIdx) => (
                 <button
                   key={pIdx}
                   type="button"
                   onClick={() => handleSendMessage(prompt)}
                   disabled={isBusy}
-                  className="px-2.5 py-1 text-[11px] font-medium rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 transition-all shrink-0 shadow-xs disabled:opacity-50 cursor-pointer"
+                  className="px-2.5 py-1 text-[11px] font-medium rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-500 hover:text-neutral-900 dark:hover:text-white text-neutral-700 dark:text-neutral-300 transition-all shrink-0 shadow-xs disabled:opacity-50 cursor-pointer"
                 >
                   {prompt}
                 </button>
@@ -429,7 +429,7 @@ export default function ResumeChatbot({ resumeData }) {
             </div>
 
             {/* ── Input Box ───────────────────────────────────────── */}
-            <div className="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+            <div className="p-3 bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
               <div className="flex items-center gap-2">
                 <input
                   ref={inputRef}
@@ -439,13 +439,13 @@ export default function ResumeChatbot({ resumeData }) {
                   onKeyDown={handleKeyDown}
                   placeholder={isBusy ? 'AI Advisor is typing...' : 'Ask about your ATS score, summary, or bullets...'}
                   disabled={isBusy}
-                  className="flex-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all disabled:opacity-60"
+                  className="flex-1 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3.5 py-2.5 text-xs text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-white transition-all disabled:opacity-60"
                 />
                 <button
                   type="button"
                   onClick={() => handleSendMessage()}
                   disabled={!inputMessage.trim() || isBusy}
-                  className="p-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-40 disabled:hover:bg-indigo-600 transition-colors shrink-0 shadow-xs cursor-pointer"
+                  className="p-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 text-white disabled:opacity-40 transition-colors shrink-0 shadow-xs cursor-pointer"
                   aria-label="Send message"
                 >
                   <Send className="w-4 h-4" />
