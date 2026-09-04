@@ -188,14 +188,14 @@ export default function AuthModal() {
 
           {/* Mode Switcher Tabs */}
           {authModalMode !== 'forgot' && (
-            <div className="flex border-b border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950 p-1">
+            <div className="flex border-b border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950 p-1.5 gap-1.5">
               <button
                 type="button"
                 onClick={() => handleModeSwitch('login')}
-                className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
+                className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all ${
                   authModalMode === 'login'
-                    ? 'bg-white dark:bg-neutral-850 text-neutral-900 dark:text-white shadow-xs border border-transparent dark:border-neutral-700'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-neutral-800 dark:text-white shadow-sm border border-neutral-900 dark:border-neutral-700'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/50 dark:hover:bg-neutral-850'
                 }`}
               >
                 Sign In
@@ -203,10 +203,10 @@ export default function AuthModal() {
               <button
                 type="button"
                 onClick={() => handleModeSwitch('register')}
-                className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
+                className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all ${
                   authModalMode === 'register'
-                    ? 'bg-white dark:bg-neutral-850 text-neutral-900 dark:text-white shadow-xs border border-transparent dark:border-neutral-700'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-neutral-800 dark:text-white shadow-sm border border-neutral-900 dark:border-neutral-700'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/50 dark:hover:bg-neutral-850'
                 }`}
               >
                 Create Account
@@ -302,7 +302,7 @@ export default function AuthModal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 active:scale-98 shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-750 dark:text-white dark:border dark:border-neutral-700 active:scale-98 shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -479,7 +479,7 @@ export default function AuthModal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 active:scale-98 shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 pt-3"
+                  className="w-full py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-750 dark:text-white dark:border dark:border-neutral-700 active:scale-98 shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 pt-3"
                 >
                   {loading ? (
                     <>
@@ -529,7 +529,7 @@ export default function AuthModal() {
 
                 <button
                   type="submit"
-                  className="w-full py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 transition-all shadow-md"
+                  className="w-full py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-750 dark:text-white dark:border dark:border-neutral-700 transition-all shadow-md"
                 >
                   Send Reset Link
                 </button>
