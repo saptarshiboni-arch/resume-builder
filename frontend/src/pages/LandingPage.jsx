@@ -90,12 +90,12 @@ export default function LandingPage({ onStartResume, onLoadDemo }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto"
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto"
         >
           <button
             id="hero-create-btn"
             onClick={onStartResume}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 active:scale-98 shadow-sm transition-all group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 active:scale-98 shadow-md transition-all group"
           >
             <span>Start Building</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -104,9 +104,9 @@ export default function LandingPage({ onStartResume, onLoadDemo }) {
           <button
             id="hero-how-it-works-btn"
             onClick={() => setIsHowItWorksOpen(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-medium text-sm sm:text-base text-neutral-700 dark:text-neutral-200 bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 shadow-sm transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base text-neutral-800 dark:text-neutral-100 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 shadow-sm transition-all"
           >
-            <PlayCircle className="w-4 h-4 text-neutral-500" />
+            <PlayCircle className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
             <span>How It Works</span>
           </button>
         </motion.div>
@@ -122,7 +122,7 @@ export default function LandingPage({ onStartResume, onLoadDemo }) {
           <button
             id="hero-try-demo-btn"
             onClick={onLoadDemo}
-            className="text-neutral-800 dark:text-neutral-200 font-semibold hover:underline inline-flex items-center gap-1"
+            className="text-neutral-900 dark:text-amber-400 font-bold hover:underline inline-flex items-center gap-1"
           >
             <span>Try Demo Profile</span>
             <ChevronRight className="w-3 h-3" />

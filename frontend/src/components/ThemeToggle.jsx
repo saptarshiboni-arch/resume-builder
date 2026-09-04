@@ -11,10 +11,10 @@ export default function ThemeToggle({ className = "" }) {
       id="theme-toggle-btn"
       type="button"
       onClick={toggleTheme}
-      className={`relative inline-flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 ${
+      className={`relative inline-flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500/50 ${
         isDark
-          ? 'bg-slate-800/90 text-amber-400 hover:bg-slate-700/90 border border-slate-700 hover:border-amber-400/40 shadow-sm shadow-amber-500/10'
-          : 'bg-slate-100 text-slate-700 hover:bg-slate-200/80 hover:text-indigo-600 border border-slate-200 shadow-xs'
+          ? 'bg-neutral-800 text-amber-400 hover:bg-neutral-700 border border-neutral-600 hover:border-amber-400 shadow-sm'
+          : 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200 hover:text-neutral-950 border border-neutral-300 shadow-xs'
       } ${className}`}
       aria-label={isDark ? "Switch to Day mode" : "Switch to Night mode"}
       title={isDark ? "Switch to Day mode (Light)" : "Switch to Night mode (Dark)"}

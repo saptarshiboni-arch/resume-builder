@@ -33,10 +33,10 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
           <button
             id="btn-nav-demo"
             onClick={onLoadDemo}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-200 bg-neutral-100/80 dark:bg-neutral-850 hover:bg-neutral-200/80 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700/80 rounded-lg transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg transition-colors shadow-xs"
             title="Load sample Alex Johnson data to test immediately"
           >
-            <PlayCircle className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" />
+            <PlayCircle className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-300" />
             <span>Try Demo</span>
           </button>
 
@@ -45,7 +45,7 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
             <button
               id="btn-nav-create"
               onClick={onStartNew}
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-100 active:scale-98 rounded-lg shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 active:scale-98 rounded-lg shadow-sm transition-all"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create Resume</span>
@@ -53,7 +53,7 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
           ) : currentView === 'wizard' ? (
             <button
               onClick={() => setCurrentView('landing')}
-              className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white px-3 py-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              className="text-xs sm:text-sm font-semibold text-neutral-700 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white px-3 py-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-transparent dark:border-neutral-700 transition-colors"
             >
               Exit to Home
             </button>
@@ -61,13 +61,13 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrentView('wizard')}
-                className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 px-3 py-1.5 rounded-lg transition-colors border border-neutral-200 dark:border-neutral-700"
+                className="text-xs font-semibold text-neutral-800 dark:text-neutral-100 hover:text-neutral-950 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 px-3 py-1.5 rounded-lg transition-colors border border-neutral-300 dark:border-neutral-600 shadow-xs"
               >
                 Edit Answers
               </button>
               <button
                 onClick={onStartNew}
-                className="hidden md:inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white px-3 py-1.5 rounded-lg border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                className="hidden md:inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 dark:text-neutral-100 hover:text-neutral-950 dark:hover:text-white px-3 py-1.5 rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors shadow-xs"
               >
                 <PlusCircle className="w-3.5 h-3.5" />
                 <span>New Resume</span>
@@ -83,7 +83,7 @@ export default function Navbar({ currentView, setCurrentView, onLoadDemo, onStar
               id="btn-nav-auth"
               type="button"
               onClick={() => openAuthModal('login')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white bg-neutral-100 dark:bg-neutral-850 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700/80 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-100 hover:text-neutral-950 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg transition-colors shadow-xs"
             >
               <LogIn className="w-3.5 h-3.5" />
               <span>Sign In</span>

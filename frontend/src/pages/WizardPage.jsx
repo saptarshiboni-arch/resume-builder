@@ -472,7 +472,7 @@ export default function WizardPage({
 
               {/* Goal Selection */}
               <div>
-                <label className="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-2">
+                <label className="block text-xs font-bold text-neutral-800 dark:text-neutral-200 mb-2">
                   What are you currently looking for?
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -483,15 +483,15 @@ export default function WizardPage({
                         key={goal.id}
                         type="button"
                         onClick={() => updateCareer('goal', goal.label)}
-                        className={`p-3 rounded-xl border text-left text-xs font-semibold transition-all ${
+                        className={`p-3 rounded-xl border text-left text-xs font-bold transition-all ${
                           isSelected
-                            ? 'bg-indigo-50 dark:bg-indigo-950/70 border-indigo-600 dark:border-indigo-500 text-indigo-950 dark:text-indigo-200 shadow-sm ring-1 ring-indigo-600 dark:ring-indigo-500'
-                            : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-indigo-200 dark:hover:border-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-800'
+                            ? 'bg-neutral-900 border-neutral-900 text-white dark:bg-white dark:border-white dark:text-neutral-950 shadow-md'
+                            : 'bg-white dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 text-neutral-800 dark:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-xs'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <span>{goal.label}</span>
-                          {isSelected && <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />}
+                          {isSelected && <CheckCircle2 className="w-4 h-4 text-emerald-400 dark:text-emerald-600" />}
                         </div>
                       </button>
                     );
@@ -502,7 +502,7 @@ export default function WizardPage({
 
               {/* Role Selection */}
               <div>
-                <label className="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-2">
+                <label className="block text-xs font-bold text-neutral-800 dark:text-neutral-200 mb-2">
                   What type of role are you interested in?
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -516,10 +516,10 @@ export default function WizardPage({
                           updateCareer('targetRole', role);
                           if (role !== 'Other') setCustomRole('');
                         }}
-                        className={`px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                        className={`px-3 py-2 rounded-xl border text-xs font-bold transition-all ${
                           isSelected
-                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                            : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-indigo-300 dark:hover:border-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-800'
+                            ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-white dark:text-neutral-950 dark:border-white shadow-sm'
+                            : 'bg-white dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 text-neutral-800 dark:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-xs'
                         }`}
                       >
                         {role}
@@ -538,7 +538,7 @@ export default function WizardPage({
                         updateCareer('targetRole', e.target.value || 'Other');
                       }}
                       placeholder="Type custom role title (e.g. Embedded Systems Engineer)..."
-                      className="w-full px-3.5 py-2 text-sm rounded-xl border border-indigo-300 dark:border-indigo-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-indigo-500 outline-none"
+                      className="w-full px-3.5 py-2 text-sm rounded-xl border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:ring-2 focus:ring-neutral-500 outline-none"
                     />
                   </div>
                 )}
@@ -547,7 +547,7 @@ export default function WizardPage({
 
               {/* Career Level */}
               <div>
-                <label className="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-2">
+                <label className="block text-xs font-bold text-neutral-800 dark:text-neutral-200 mb-2">
                   How would you describe your career level?
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -558,14 +558,16 @@ export default function WizardPage({
                         key={lvl.id}
                         type="button"
                         onClick={() => updateCareer('careerLevel', lvl.label)}
-                        className={`p-3 rounded-xl border text-left transition-all ${
+                        className={`p-3 rounded-xl border text-left text-xs font-bold transition-all ${
                           isSelected
-                            ? 'bg-indigo-50 dark:bg-indigo-950/70 border-indigo-600 dark:border-indigo-500 text-indigo-950 dark:text-indigo-200 ring-1 ring-indigo-600 dark:ring-indigo-500 shadow-sm'
-                            : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-800'
+                            ? 'bg-neutral-900 border-neutral-900 text-white dark:bg-white dark:border-white dark:text-neutral-950 shadow-md'
+                            : 'bg-white dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600 text-neutral-800 dark:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-xs'
                         }`}
                       >
-                        <div className="font-bold text-xs text-slate-900 dark:text-white">{lvl.label}</div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{lvl.desc}</div>
+                        <div className="flex items-center justify-between">
+                          <span>{lvl.label}</span>
+                          {isSelected && <CheckCircle2 className="w-4 h-4 text-emerald-400 dark:text-emerald-600" />}
+                        </div>
                       </button>
                     );
                   })}
@@ -1636,13 +1638,13 @@ export default function WizardPage({
               </div>
 
               {/* Bottom Generate CTA */}
-              <div className="pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
+              <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 text-center">
                 <button
                   id="btn-generate-resume"
                   type="button"
                   disabled={isGenerating}
                   onClick={onGenerateResume}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-extrabold text-base text-white bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 hover:opacity-95 shadow-xl shadow-indigo-600/30 active:scale-98 transition-all disabled:opacity-50"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-base text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 shadow-xl active:scale-98 transition-all disabled:opacity-50"
                 >
                   {isGenerating ? (
                     <>
@@ -1656,7 +1658,7 @@ export default function WizardPage({
                     </>
                   )}
                 </button>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
                   AI transforms your descriptions into professional bullet points and summary.
                 </p>
               </div>
@@ -1666,12 +1668,12 @@ export default function WizardPage({
 
         {/* Wizard Navigation Footer */}
         {currentStep <= 8 && (
-          <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-200/80 dark:border-slate-800">
+          <div className="flex items-center justify-between mt-6 pt-4 border-t border-neutral-200/80 dark:border-neutral-800">
             <button
               type="button"
               onClick={handleBack}
               disabled={currentStep === 1}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-30 disabled:pointer-events-none transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold text-neutral-800 dark:text-neutral-100 hover:text-neutral-950 dark:hover:text-white bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-700 disabled:opacity-30 disabled:pointer-events-none transition-all shadow-xs"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -1681,7 +1683,7 @@ export default function WizardPage({
               <button
                 type="button"
                 onClick={handleNext}
-                className="inline-flex items-center gap-1.5 px-6 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm transition-all"
+                className="inline-flex items-center gap-1.5 px-6 py-2.5 text-xs font-bold text-white bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 rounded-xl shadow-md transition-all active:scale-98"
               >
                 <span>{currentStep === 8 ? 'Review Answers' : 'Next'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

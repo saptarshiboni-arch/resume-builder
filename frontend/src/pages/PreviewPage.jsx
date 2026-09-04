@@ -159,20 +159,20 @@ export default function PreviewPage({
                       onClick={() => setSelectedTemplate(tpl.id)}
                       className={`p-3.5 rounded-xl border text-left transition-all relative ${
                         isSelected
-                          ? 'border-indigo-600 bg-indigo-50/40 dark:bg-indigo-950/40 ring-2 ring-indigo-600/30 shadow-sm'
-                          : 'border-slate-200 dark:border-slate-800 hover:border-indigo-200 dark:hover:border-indigo-700 hover:bg-slate-50 dark:hover:bg-slate-850'
+                          ? 'border-neutral-900 bg-neutral-100 dark:border-white dark:bg-neutral-800 ring-2 ring-neutral-900/10 dark:ring-white/20 shadow-sm'
+                          : 'border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-500 bg-white dark:bg-neutral-850 hover:bg-neutral-50 dark:hover:bg-neutral-800 shadow-xs'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{tpl.name}</span>
-                          <span className="text-[10px] px-1.5 py-0.2 rounded font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                          <span className="font-bold text-neutral-900 dark:text-white text-xs sm:text-sm">{tpl.name}</span>
+                          <span className="text-[10px] px-1.5 py-0.2 rounded font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600">
                             {tpl.tag}
                           </span>
                         </div>
-                        {isSelected && <Check className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />}
+                        {isSelected && <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />}
                       </div>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">{tpl.desc}</p>
+                      <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-normal">{tpl.desc}</p>
                     </button>
                   );
                 })}
@@ -183,13 +183,13 @@ export default function PreviewPage({
             <QualityScoreWidget scoreData={resumeData?.qualityScore} />
 
             {/* Quick AI Refinement Actions Box */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-3">
+            <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200/90 dark:border-neutral-800 p-5 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                  <h3 className="font-bold text-slate-900 dark:text-white text-sm font-display">Quick Section Tweaks</h3>
+                  <Sparkles className="w-4 h-4 text-neutral-700 dark:text-neutral-300" />
+                  <h3 className="font-bold text-neutral-900 dark:text-white text-sm font-display">Quick Section Tweaks</h3>
                 </div>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Click to refine</span>
+                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-medium">Click to refine</span>
               </div>
 
               <div className="space-y-2 text-xs">
@@ -205,13 +205,13 @@ export default function PreviewPage({
                         { targetRole: resumeData.career?.targetRole }
                       )
                     }
-                    className="w-full flex items-center justify-between p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 hover:bg-indigo-50/30 dark:hover:bg-indigo-950/30 transition-all text-left group"
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all text-left group bg-white dark:bg-neutral-850 shadow-xs"
                   >
                     <div>
-                      <span className="font-semibold text-slate-800 dark:text-slate-200 block">Professional Summary</span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1">{resumeData.summary}</span>
+                      <span className="font-bold text-neutral-900 dark:text-neutral-100 block">Professional Summary</span>
+                      <span className="text-[10px] text-neutral-600 dark:text-neutral-400 line-clamp-1">{resumeData.summary}</span>
                     </div>
-                    <Edit3 className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 shrink-0 ml-2" />
+                    <Edit3 className="w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white shrink-0 ml-2" />
                   </button>
                 )}
 
